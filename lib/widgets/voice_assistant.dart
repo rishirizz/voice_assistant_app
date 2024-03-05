@@ -12,11 +12,11 @@ class VoiceAssistant extends StatelessWidget {
     return Center(
       child: CircleAvatar(
         backgroundColor: AppColor.assistantBGColor,
-        radius: 70,
+        radius: 60,
         child: Image.asset(
           'assets/images/voice-assistant.png',
-          height: 100,
-          width: 100,
+          height: 90,
+          width: 90,
         ),
       ),
     );

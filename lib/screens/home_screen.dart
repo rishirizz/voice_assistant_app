@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:voice_assistant_app/utils/colors.dart';
-import 'package:voice_assistant_app/widgets/prompt_bubble.dart';
+import 'package:voice_assistant_app/widgets/prompt_bubbles.dart';
 import '../widgets/voice_assistant.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -23,6 +22,11 @@ class _HomeScreenState extends State<HomeScreen> {
         leading: const Icon(
           Icons.menu,
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: AppColor.assistantBGColor,
+        onPressed: () {},
+        child: const Icon(Icons.mic),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -66,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 const Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    'Here are a few prompts:',
+                    'Here are a few suggestions:',
                     style: TextStyle(
                       fontFamily: 'Cera-Pro',
                       color: AppColor.mainFontColor,
@@ -75,32 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 30,
-                ),
-                const PromptBubble(
-                  title: 'Chat-GPT',
-                  subtitle:
-                      'A smarter way to stay organized and informed with Chat-GPT.',
-                  bgColor: AppColor.firstSuggestionBoxColor,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const PromptBubble(
-                  title: 'Dall-E',
-                  subtitle: 'Get inspaired and stay creative with your personal assistant powered by Dall-E.',
-                  bgColor: AppColor.secondSuggestionBoxColor,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const PromptBubble(
-                  title: 'Smart Voice Assistant',
-                  subtitle:
-                      'Get the best of both worlds with a voice assistant powered by Chat-GPT and Dall-E.',
-                  bgColor: AppColor.thirdSuggestionBoxColor,
-                ),
+                const PromptBubbles(),
               ],
             ),
           ),

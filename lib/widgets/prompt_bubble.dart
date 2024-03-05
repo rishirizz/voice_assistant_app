@@ -32,7 +32,7 @@ class PromptBubble extends StatelessWidget {
           horizontal: 8.0,
           vertical: 2.0,
         ).copyWith(
-          bottom: 4,
+          bottom: 8,
         ),
         child: Text(
           subtitle,
