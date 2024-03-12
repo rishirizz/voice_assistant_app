@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:speech_to_text/speech_recognition_result.dart';
+import 'package:speech_to_text/speech_to_text.dart';
 import 'package:voice_assistant_app/utils/colors.dart';
 import 'package:voice_assistant_app/widgets/prompt_bubbles.dart';
 import '../widgets/voice_assistant.dart';
@@ -11,6 +13,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  SpeechToText speechToText = SpeechToText();
+  String lastWords = '';
+
+  @override
+  void initState() {
+    super.initState();
+    initialiseSpeechToText();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,5 +97,26 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+
+  initialiseSpeechToText() async {
+    await speechToText.initialize();
+    setState(() {}); //initialise and then rebuild the UI
+  }
+
+  void startListening() async {
+    await speechToText.listen(onResult: onSpeechResult);
+    setState(() {});
+  }
+
+  void stopListening() async {
+    await speechToText.stop();
+    setState(() {});
+  }
+
+  void onSpeechResult(SpeechRecognitionResult result) {
+    setState(() {
+      lastWords = result.recognizedWords;
+    });
   }
 }
