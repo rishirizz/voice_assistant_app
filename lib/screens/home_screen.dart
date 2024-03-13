@@ -36,7 +36,15 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColor.assistantBGColor,
-        onPressed: () {},
+        onPressed: () async {
+          if (await speechToText.hasPermission && speechToText.isNotListening) {
+            startListening();
+          } else if (speechToText.isListening) {
+            stopListening();
+          } else {
+            initialiseSpeechToText();
+          }
+        },
         child: const Icon(Icons.mic),
       ),
       body: SafeArea(
@@ -118,5 +126,11 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       lastWords = result.recognizedWords;
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    speechToText.stop();
   }
 }
